@@ -36,10 +36,10 @@ router.beforeEach(async(to, from, next) => {
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
           const { roles } = await store.dispatch('user/getInfo')
 
-          // generate accessible routes map based on roles
+          // 角色得到的动态路由
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
 
-          // dynamically add accessible routes
+          //静态路由拼接动态路由
           router.addRoutes(accessRoutes)
 
           //确保addRoutes完整的hack方法
